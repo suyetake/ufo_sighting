@@ -6,8 +6,8 @@ class SightingsController < ApplicationController
     longitude = params[:longitude].to_d
 
     @sightings = Sighting.
-        where("x_coord BETWEEN #{latitude - 1} AND #{latitude + 1}").
-        where("y_coord BETWEEN #{longitude - 1} AND #{longitude + 1}").
+        where("x_coord BETWEEN #{latitude - 10} AND #{latitude + 10}").
+        where("y_coord BETWEEN #{longitude - 10} AND #{longitude + 10}").
         limit(500).
         all
 
