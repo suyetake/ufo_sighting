@@ -2,11 +2,18 @@ class SightingsController < ApplicationController
   # GET /sightings
   # GET /sightings.json
   def index
-    @sightings = Sighting.limit(100).all
+    latitude = params[:latitude].to_d
+    longitude = params[:longitude].to_d
+
+    @sightings = Sighting.
+        where("x_coord BETWEEN #{latitude - 1} AND #{latitude + 1}").
+        where("y_coord BETWEEN #{longitude - 1} AND #{longitude + 1}").
+        limit(500).
+        all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @sightings }
+      format.json { render json: @sightings, methods: [:latitude, :longitude] }
     end
   end
 
