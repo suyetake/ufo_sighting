@@ -2,7 +2,7 @@ class SightingsController < ApplicationController
   # GET /sightings
   # GET /sightings.json
   def index
-    @sightings = Sighting.limit(10).all
+    @sightings = Sighting.limit(100).all
 
     respond_to do |format|
       format.html # index.html.erb
